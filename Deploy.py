@@ -3,16 +3,18 @@ import pandas as pd
 import joblib
 from datetime import date, datetime, timedelta
 
-# Load the saved pipeline
 pipeline = joblib.load("best_model.pkl")
 
-# Sidebar navigation
-st.sidebar.title("Navigation")
+st.sidebar.title("Features")
+
 page = st.sidebar.radio("Go to", ["About the Project", "Prediction"])
 
 if page == "About the Project":
-    # About the Project Page
+    
     st.title("About the Project")
+    
+    st.image("plane3.jpg", use_container_width=True)
+
     st.write("""
     This Flight Price Prediction app is designed to help users estimate the cost of flights based on 
     various factors such as airline, source, destination, and additional information.
@@ -27,11 +29,12 @@ if page == "About the Project":
     - **Joblib** for model serialization.
 
     ### Author
-    Developed by [Your Name].
+    Developed by Bavley Adel , Potros Atia , Mariam Essam , Beshoy Adel , Mina Magdy.
+             
     """)
 
 elif page == "Prediction":
-    # Prediction Page
+    
     st.title("Flight Price Prediction App")
 
     st.sidebar.header("Input Features")
@@ -45,26 +48,22 @@ elif page == "Prediction":
         Destination = st.sidebar.selectbox("Destination", ["Banglore", "Delhi", "Kolkata", "Mumbai", "Chennai",
                                                             "Cochin", "New Delhi", "Hyderabad"])
         
-        # Duration as time input
         Duration_Time = st.sidebar.time_input("Duration (HH:MM)")
-        Duration = Duration_Time.hour * 60 + Duration_Time.minute  # Convert to minutes
+        Duration = Duration_Time.hour * 60 + Duration_Time.minute  
         
         Total_Stops = st.sidebar.number_input("Total Stops", min_value=0.0, max_value=5.0, step=1.0)
         Additional_Info = st.sidebar.selectbox("Additional Info", ["No info", "In-flight meal not included",
                                                                    "No check-in baggage included", "1 Long layover",
                                                                    "Change airports", "Red-eye flight"])
         
-        # Departure Date and Time
         Dep_Date = st.sidebar.date_input("Departure Date",value = date(2019, 1, 1))
         Dep_Time = st.sidebar.time_input("Departure Time")
         
-        # Calculate Arrival Date and Month
         Dep_DateTime = datetime.combine(Dep_Date, Dep_Time)
         Arrival_DateTime = Dep_DateTime + timedelta(minutes=Duration)
         Arrival_Day = Arrival_DateTime.day
         Arrival_Month = Arrival_DateTime.month
         
-        # Store user input in a dataframe
         data = {
             "Airline": [Airline],
             "Source": [Source],
@@ -81,14 +80,11 @@ elif page == "Prediction":
         }
         return pd.DataFrame(data)
 
-    # Get input features
     input_df = user_input_features()
 
-    # Show input dataframe
     st.write("Input Data")
     st.dataframe(input_df)
 
-    # Make predictions
     if st.button("Predict"):
         prediction = pipeline.predict(input_df)
         st.success(f"Predicted Price: ₹{prediction[0]:.2f}")
