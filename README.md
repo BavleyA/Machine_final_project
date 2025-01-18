@@ -15,7 +15,7 @@ Flight ticket prices can vary significantly depending on numerous factors, such 
 - [Model](#model)
 - [Training](#training)
 - [Evaluation](#evaluation)
-- [Usage](#usage)
+- [Deployment](#deployment)
 - [License](#license)
 
 ## Getting Started
@@ -81,14 +81,78 @@ Model Summary:
 
 ## Training
 
-Once the dependencies are installed and the data is ready, you can train the model by running the train.py script.
-
-```bash
-python train.py
-```
+Once the dependencies are installed and the data is ready, you can train the model by running the project1.ipynb .
 
 This will:
 
-Load and preprocess the dataset.
-Train the SGD model using the training data.
-Save the trained model as a .pkl file.
+1- Load and preprocess the dataset.
+2- Train the SGD model using the training data.
+3- Save the trained model as a .pkl file.
+
+## Evaluation
+
+To evaluate the performance of the trained model, the evaluation is conducted within the `project1.ipynb` Jupyter notebook. This notebook will:
+
+1. Load the saved model.
+2. Apply the model to the test dataset.
+3. Calculate key performance metrics, such as Mean Absolute Error (MAE) and R-squared.
+
+To run the evaluation:
+
+1. Open the `project1.ipynb` notebook in a Jupyter environment.
+2. Run the cells to load the model, evaluate it on the test data, and display the performance metrics.
+
+```bash
+jupyter notebook project1.ipynb
+```
+
+## Deployment 
+
+For a more interactive experience, you can use the Streamlit web application that allows you to input flight data and instantly get predictions for flight ticket prices.
+
+### Steps to Run the Streamlit App:
+
+1. **Install Streamlit**  
+   If you haven't already installed Streamlit, run the following command to install it:
+
+    ```bash
+    pip install streamlit
+    ```
+
+2. **Navigate to the Project Directory**  
+   Once Streamlit is installed, navigate to the project directory where the Streamlit app is located.
+
+    ```bash
+    cd flight-ticket-price-prediction
+    ```
+
+3. **Run the Streamlit App**  
+   Start the Streamlit app with the following command:
+
+    ```bash
+    streamlit run deploy.py
+    ```
+
+4. **Interact with the Web App**  
+   This will launch a local web app in your browser where you can:
+    - **Upload a CSV file** with the input data containing flight information.
+    - **View the predicted flight ticket prices** directly on the web interface.
+
+The Streamlit app provides an easy and interactive way to interact with the model, making it suitable for both technical and non-technical users.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- The dataset used in this project is publicly available and may be sourced from various open data platforms.
+- The Stochastic Gradient Descent (SGD) algorithm is implemented using the `scikit-learn` library.
+- 
+---
+
+### Customization Tips:
+
+- **Repository link:** Replace `https://github.com/yourusername/flight-ticket-price-prediction.git` with the actual link to your GitHub repository.
+
+This `README.md` is designed to give potential users and collaborators clear instructions on setting up, using, and contributing to the project.
