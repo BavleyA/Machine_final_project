@@ -27,3 +27,11 @@ To get started with this project, you can clone the repository and install the n
 ```bash
 git clone https://github.com/yourusername/flight-ticket-price-prediction.git
 cd flight-ticket-price-prediction
+```
+
+## Prerequisites
+Before running the project, ensure you have the following tools and libraries installed:
+
+Python 3.x
+pip (Python package manager)
+
